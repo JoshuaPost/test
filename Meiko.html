@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEIKO Group Transfer Pricing Control Center (FYE 2025)</title>
+    <link rel="stylesheet" href="Meiko.css">
+</head>
+<body>
+    <div class="header">
+        <h1>MEIKO Group Transfer Pricing Control Center</h1>
+        <div class="header-info">
+            <div class="header-stat"><strong>Group Revenue:</strong> EUR 500M</div>
+            <div class="header-stat"><strong>FYE:</strong> 31 December 2025</div>
+            <div class="header-stat"><strong>Legal Entities:</strong> 22</div>
+            <div class="header-stat"><strong>CbCR Status:</strong> Below EUR 750M threshold</div>
+        </div>
+    </div>
+
+    <div class="nav-tabs">
+        <div class="nav-tab active" onclick="showView(this, 'control')">Control Center</div>
+        <div class="nav-tab" onclick="showView(this, 'timeline')">2025-2026 Deadlines</div>
+        <div class="nav-tab" onclick="showView(this, 'critical')">Critical Actions</div>
+        <div class="nav-tab" onclick="showView(this, 'functional')">Functional Profiles</div>
+    </div>
+
+    <div class="content">
+        <div id="control" class="view active">
+            <h2 class="section-title">Transfer Pricing Control Center</h2>
+
+            <div class="highlight-box">
+                <strong>Key Insight:</strong> Although MEIKO is below the EUR 750M CbCR threshold, eight countries still require Master File preparation, eleven require Local File documentation, and nine impose separate TP filings or disclosures.
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-number">8</div>
+                    <div class="summary-label">Master File Jurisdictions</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number">11</div>
+                    <div class="summary-label">Local File Jurisdictions</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number">9</div>
+                    <div class="summary-label">Mandatory TP Filings</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number">30</div>
+                    <div class="summary-label">Day Fastest Response Window</div>
+                </div>
+            </div>
+
+            <div class="alert alert-warning">
+                <strong>Upcoming Focus:</strong> France and Austria documentation by 31 March 2026, Turkey TP return by 31 March 2026, and Mexico Local File informative return by 15 May 2026.
+            </div>
+
+            <h3 class="section-subtitle">Regional Snapshot</h3>
+            <div class="region-grid" id="region-summary-top">
+                <div class="region-card">
+                    <div class="region-header">
+                        <span>EUROPE</span>
+                        <span class="region-stats">8 entities</span>
+                    </div>
+                    <div class="entity-list">
+                        <a class="entity-item" href="#detail-germany" onclick="showCountryDetail('germany'); return false;">
+                            <span class="entity-name">Germany (HQ/Sales)</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-mf">MF</span>
+                                <span class="status-badge status-lf">LF</span>
+                                <span class="status-badge status-new">NEW</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-austria" onclick="showCountryDetail('austria'); return false;">
+                            <span class="entity-name">Austria</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-mf">MF</span>
+                                <span class="status-badge status-lf">LF</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-belgium" onclick="showCountryDetail('belgium'); return false;">
+                            <span class="entity-name">Belgium</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-mf">MF</span>
+                                <span class="status-badge status-lf">LF</span>
+                                <span class="status-badge status-form">Forms</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-france" onclick="showCountryDetail('france'); return false;">
+                            <span class="entity-name">France</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-mf">MF</span>
+                                <span class="status-badge status-lf">LF</span>
+                                <span class="status-badge status-new">NEW</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-netherlands" onclick="showCountryDetail('netherlands'); return false;">
+                            <span class="entity-name">Netherlands</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-mf">MF</span>
+                                <span class="status-badge status-lf">LF</span>
+                                <span class="status-badge status-form">PCbCR</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-spain" onclick="showCountryDetail('spain'); return false;">
+                            <span class="entity-name">Spain</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-mf">MF</span>
+                                <span class="status-badge status-lf">LF</span>
+                                <span class="status-badge status-form">Form 232</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-turkey" onclick="showCountryDetail('turkey'); return false;">
+                            <span class="entity-name">Turkey</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-mf">MF</span>
+                                <span class="status-badge status-lf">LF</span>
+                                <span class="status-badge status-form">TP Return</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-uk" onclick="showCountryDetail('uk'); return false;">
+                            <span class="entity-name">United Kingdom</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-lf">TPD</span>
+                                <span class="status-badge status-form">CIT</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="region-card">
+                    <div class="region-header">
+                        <span>AMERICAS</span>
+                        <span class="region-stats">2 entities</span>
+                    </div>
+                    <div class="entity-list">
+                        <a class="entity-item" href="#detail-mexico" onclick="showCountryDetail('mexico'); return false;">
+                            <span class="entity-name">Mexico</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-mf">MF</span>
+                                <span class="status-badge status-lf">LF</span>
+                                <span class="status-badge status-form">Returns</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-canada" onclick="showCountryDetail('canada'); return false;">
+                            <span class="entity-name">Canada</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-lf">TPD</span>
+                                <span class="status-badge status-form">T106</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="region-card">
+                    <div class="region-header">
+                        <span>ASIA-PACIFIC</span>
+                        <span class="region-stats">3 entities</span>
+                    </div>
+                    <div class="entity-list">
+                        <a class="entity-item" href="#detail-japan" onclick="showCountryDetail('japan'); return false;">
+                            <span class="entity-name">Japan</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-lf">LF</span>
+                                <span class="status-badge status-form">17-4</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-india" onclick="showCountryDetail('india'); return false;">
+                            <span class="entity-name">India</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-lf">LF</span>
+                                <span class="status-badge status-form">3CEB</span>
+                            </span>
+                        </a>
+                        <a class="entity-item" href="#detail-australia" onclick="showCountryDetail('australia'); return false;">
+                            <span class="entity-name">Australia</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-lf">TPD</span>
+                                <span class="status-badge status-form">IDS</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="region-card">
+                    <div class="region-header">
+                        <span>MIDDLE EAST</span>
+                        <span class="region-stats">1 entity</span>
+                    </div>
+                    <div class="entity-list">
+                        <a class="entity-item" href="#detail-uae" onclick="showCountryDetail('uae'); return false;">
+                            <span class="entity-name">United Arab Emirates</span>
+                            <span class="entity-status">
+                                <span class="status-badge status-lf">LF</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <h3 class="section-subtitle">Country Detail Sheets</h3>
+
+            <div class="country-detail" id="detail-germany">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Germany</h2>
+                        <div class="country-entity">MEIKO Maschinenbau GmbH &amp; Co. KG and local sales entities</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>Master File required when local sales exceeded EUR 100M in the prior financial year.</li>
+                            <li>Local File triggered when goods RPTs exceed EUR 6M or other RPTs exceed EUR 600K.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Maintain BEPS Action 13 compliant MF/LF with refreshed benchmarking.</li>
+                            <li>Document extraordinary transactions within six months of year end.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>Transaction Matrix submitted automatically within 30 days of an audit notice.</li>
+                            <li>Master File and extraordinary documentation accompany the Transaction Matrix.</li>
+                            <li>CIT return disclosure lists foreign related parties and low-tax transactions.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: Transaction Matrix is a separate filing; CIT disclosure included with the return.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>Maintain contemporaneous documentation throughout FY 2025.</li>
+                            <li>Extraordinary transaction documentation due 30 Jun 2026.</li>
+                            <li>Provide the Local File within 30 days of a formal request.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-austria">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Austria</h2>
+                        <div class="country-entity">MEIKO Austria GmbH</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>MF/LF mandatory if local GAAP turnover exceeded EUR 50M in each of the two preceding financial years.</li>
+                            <li>Scaled documentation expected even when thresholds are not met.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Maintain OECD-standard MF/LF with detailed functional coverage.</li>
+                            <li>Address intercompany services and financing arrangements specifically.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>CbCR notification due 31 Dec 2025.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: CbCR notification filed separately; MF/LF retained for audit.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>MF/LF recommended by 31 Mar 2026.</li>
+                            <li>CbCR notification due 31 Dec 2025.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-belgium">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Belgium</h2>
+                        <div class="country-entity">MEIKO Clean Solutions Belgium SRL</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>MF/LF required when revenue &gt;= EUR 50M, assets &gt;= EUR 1B, or FTE &gt;= 100.</li>
+                            <li>Local File Part II required if cross-border RPTs exceed EUR 1M.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Submit OECD-aligned MF/LF with enhanced value chain and DEMPE detail.</li>
+                            <li>Attach TP policies, agreements, APAs, and insurance contracts when filing the Local File.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>Form 275.MF (Master File).</li>
+                            <li>Form 275.LF (Local File).</li>
+                            <li>Form 275.CBC.NOT (CbCR notification).</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: Form 275.LF filed with the CIT return; other forms submitted separately.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>Form 275.CBC.NOT due 31 Dec 2025.</li>
+                            <li>Form 275.LF filed with the CIT return (expected 31 Jul 2026).</li>
+                            <li>Form 275.MF due 31 Dec 2026.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-france">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>France</h2>
+                        <div class="country-entity">MEIKO FRANCE S.A.S</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>MF/LF required when turnover or gross assets reach EUR 150M.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Maintain contemporaneous MF/LF with updated DEMPE analysis.</li>
+                            <li>Account for higher minimum penalties for inadequate documentation.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>CERFA 2257-SD annual transfer pricing statement.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: CERFA 2257-SD filed separately within six months after the CIT return.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>MF/LF recommended by 30 Apr 2026.</li>
+                            <li>CERFA 2257-SD due approximately 31 Oct 2026.</li>
+                            <li>Provide documentation within 30 days of a request.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-netherlands">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Netherlands</h2>
+                        <div class="country-entity">MEIKO Nederland B.V.</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>MF/LF required when consolidated revenue exceeded EUR 50M in the prior financial year.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Maintain MF/LF available at the CIT filing deadline.</li>
+                            <li>Ensure consistency between MF/LF and the Public CbCR narrative.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>EU Public CbCR report (first reporting year FY 2025).</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: Public CbCR lodged and published separately by 31 Dec 2026.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>MF/LF on file by the CIT deadline (31 May 2026, extensions possible).</li>
+                            <li>Public CbCR due within 12 months of year end (31 Dec 2026).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-spain">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Spain</h2>
+                        <div class="country-entity">MEIKO Clean Solutions Iberica, S.L.U.</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>Master File required when group turnover is at least EUR 45M.</li>
+                            <li>Local File required where counterparty transactions equal or exceed EUR 250k.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Refresh MF/LF annually with current benchmarking.</li>
+                            <li>Maintain processes supporting the 10-day audit response window.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>Form 232 informative declaration of related transactions.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: Form 232 filed separately by 30 Nov 2026.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>MF/LF ready by the CIT filing date (approx. 25 Jul 2026).</li>
+                            <li>Audit response window: 10 days from request.</li>
+                            <li>Form 232 due 30 Nov 2026.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-turkey">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Turkey</h2>
+                        <div class="country-entity">MEIKO Turkey</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>MF/LF required when assets and turnover each equal or exceed TRY 500M.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Follow Annex I and II of the Turkish TP Guidelines.</li>
+                            <li>Cover domestic and cross-border related party transactions.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>TP return (Form F 982) filed with the CIT return.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: TP return submitted with the CIT return; MF/LF retained separately.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>MF/LF prepared by 31 Dec 2026.</li>
+                            <li>Form F 982 filed no later than 31 Mar 2026.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="country-detail" id="detail-mexico">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Mexico</h2>
+                        <div class="country-entity">MEIKO Mexico</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>MF/LF informative returns required when statutory revenue or transaction thresholds are met (for example MXN 904M revenue for the Master File return).</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Maintain MF/LF with robust comparables and local adjustments.</li>
+                            <li>Align supporting documentation with informative return disclosures.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>Master File informative return (Article 76-A Section I).</li>
+                            <li>Local File informative return (Article 76-A Section II).</li>
+                            <li>Exhibit 9 of DIM/ISSIF for related party transactions.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: Informative returns filed separately (Local File due 15 May 2026; Master File due 31 Dec 2026).</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>Local documentation prepared by 31 Mar 2026 (or 15 May 2026 if ISSIF is filed).</li>
+                            <li>Local File informative return due 15 May 2026.</li>
+                            <li>Master File informative return due 31 Dec 2026.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-japan">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Japan</h2>
+                        <div class="country-entity">MEIKO Japan</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>Master File exempt because global revenue is below JPY 100B.</li>
+                            <li>Local File required when total international RPTs exceed JPY 5B or specified RPTs exceed JPY 300M.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Maintain detailed TP study supporting method selection and adjustments.</li>
+                            <li>Ensure documentation aligns with Schedule 17-4 disclosures.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>Schedule 17-4 attached to the annual tax return.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: Schedule 17-4 filed with the CIT return; Local File provided within 45 days if requested.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>Local File ready by 31 Mar 2026.</li>
+                            <li>Provide documentation within 45 days of a tax authority request.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-canada">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Canada</h2>
+                        <div class="country-entity">MEIKO Canada</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>No formal MF/LF requirement due to group size, but reasonable efforts documentation is mandatory.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Maintain contemporaneous documentation covering intercompany services and financing.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>T-106 Information Return for RPTs over CAD 1M.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: T-106 filed separately by 30 Jun 2026.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>Documentation ready by the CIT deadline (30 Jun 2026).</li>
+                            <li>T-106 due 30 Jun 2026.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-uk">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>United Kingdom</h2>
+                        <div class="country-entity">MEIKO UK Ltd.</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>MF/LF not required because global revenue is below EUR 750M.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Maintain TP documentation evidencing arm's-length results and reasonable care.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>Transfer pricing disclosure within the corporation tax return.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: Disclosure included within the CIT return (30 Sep 2026).</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>Documentation ready by the CIT filing date (30 Sep 2026).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-india">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>India</h2>
+                        <div class="country-entity">MEIKO Clean Solutions (India) Pvt. Ltd.</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>Local File required when international transaction thresholds are met.</li>
+                            <li>Master File not mandatory.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Prepare a comprehensive TP study supporting each reportable transaction.</li>
+                            <li>Align supporting documentation with Form 3CEB disclosures.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>Form 3CEB (chartered accountant certificate covering TP methods and adjustments).</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: Form 3CEB filed electronically with the tax return (30 Nov 2026).</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>Documentation completed by 31 Oct 2026.</li>
+                            <li>Form 3CEB filed by 30 Nov 2026.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="country-detail" id="detail-uae">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>United Arab Emirates</h2>
+                        <div class="country-entity">MEIKO Middle East FZE</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>Local File required when UAE revenue exceeds AED 200M.</li>
+                            <li>Master File not required at current group size.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Maintain MF/LF style documentation consistent with IFRS financial statements.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>No TP-specific forms; disclosures captured via financial statements.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: Documentation retained for request; no separate filing.</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>Documentation recommended by the CIT deadline (30 Sep 2026).</li>
+                            <li>Provide documentation within 30 days upon request.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="country-detail" id="detail-australia">
+                <div class="country-header">
+                    <div class="country-title">
+                        <h2>Australia</h2>
+                        <div class="country-entity">MEIKO Australia Pty Ltd.</div>
+                    </div>
+                    <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
+                </div>
+                <div class="requirement-grid">
+                    <div class="requirement-card">
+                        <h3>Thresholds</h3>
+                        <ul>
+                            <li>MF/LF lodgment not required because global income is below AUD 1B.</li>
+                            <li>IDS required when international dealings exceed AUD 2M.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Documentation Approach</h3>
+                        <ul>
+                            <li>Prepare contemporaneous TP documentation supporting the chosen method.</li>
+                            <li>Ensure IDS disclosures align with supporting analysis.</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Forms and Disclosures</h3>
+                        <ul>
+                            <li>International Dealings Schedule (IDS) filed with the company income tax return.</li>
+                        </ul>
+                        <div class="forms-flag">Filing status: IDS lodged with the CIT return (15 Jul 2026).</div>
+                    </div>
+                    <div class="requirement-card">
+                        <h3>Deadlines</h3>
+                        <ul>
+                            <li>Documentation ready by the CIT lodgment date (15 Jul 2026).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="compliance-table-wrapper">
+                <h3 class="section-subtitle" style="margin-top: 0;">TP Documentation and Filing Matrix (FYE 31 December 2025)</h3>
+                <table class="compliance-table">
+                    <thead>
+                        <tr>
+                            <th>Country / Entity</th>
+                            <th>MF / LF Thresholds</th>
+                            <th>Documentation Requirements</th>
+                            <th>TP Forms and Disclosures</th>
+                            <th>Filed With CIT Return?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-germany" onclick="showCountryDetail('germany'); return false;">Germany (HQ/Sales)</a></td>
+                            <td>MF: Local sales &gt; EUR 100M. LF: Goods RPTs &gt; EUR 6M or other RPTs &gt; EUR 600K.</td>
+                            <td>BEPS Action 13 MF/LF with detailed transaction-level support.</td>
+                            <td>Transaction Matrix (automatic filing), MF/LF ready for audit, CIT disclosure of foreign related parties.</td>
+                            <td>Transaction Matrix submitted separately within 30 days of an audit notice; CIT disclosure included with the return.</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-austria" onclick="showCountryDetail('austria'); return false;">Austria</a></td>
+                            <td>MF/LF required if local turnover &gt;= EUR 50M in each of the two preceding FYs.</td>
+                            <td>OECD-style MF/LF with scaled documentation even when below thresholds.</td>
+                            <td>CbCR notification due 31 Dec 2025.</td>
+                            <td>CbCR notification filed separately; MF/LF retained for audit.</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-belgium" onclick="showCountryDetail('belgium'); return false;">Belgium (MEIKO Clean Solutions Belgium SRL)</a></td>
+                            <td>MF/LF when revenue &gt;= EUR 50M, assets &gt;= EUR 1B, or FTE &gt;= 100. LF Part II if RPTs &gt; EUR 1M.</td>
+                            <td>Mandatory OECD-aligned MF/LF with enhanced detail for FY 2025 onward.</td>
+                            <td>Form 275.MF, Form 275.LF, Form 275.CBC.NOT.</td>
+                            <td>Form 275.LF filed with the CIT return; other forms submitted separately.</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-france" onclick="showCountryDetail('france'); return false;">France (MEIKO FRANCE S.A.S)</a></td>
+                            <td>MF/LF when turnover or gross assets &gt;= EUR 150M.</td>
+                            <td>Contemporaneous MF/LF with heightened penalty exposure.</td>
+                            <td>CERFA 2257-SD transfer pricing statement.</td>
+                            <td>CERFA 2257-SD filed separately within six months after the CIT return.</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-netherlands" onclick="showCountryDetail('netherlands'); return false;">Netherlands (MEIKO Nederland B.V.)</a></td>
+                            <td>Group revenue &gt;= EUR 50M in the preceding FY.</td>
+                            <td>MF/LF retained locally and aligned with Public CbCR narrative.</td>
+                            <td>EU Public CbCR (first reporting year FY 2025).</td>
+                            <td>Public CbCR lodged and published separately by 31 Dec 2026.</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-spain" onclick="showCountryDetail('spain'); return false;">Spain (MEIKO Clean Solutions Iberica, S.L.U.)</a></td>
+                            <td>MF if group turnover &gt;= EUR 45M. LF if counterparty transactions &gt;= EUR 250k.</td>
+                            <td>Annual MF/LF with a 10-day audit response expectation.</td>
+                            <td>Form 232 informative declaration.</td>
+                            <td>Form 232 filed separately (30 Nov 2026).</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-turkey" onclick="showCountryDetail('turkey'); return false;">Turkey</a></td>
+                            <td>MF/LF when assets and turnover each exceed TRY 500M.</td>
+                            <td>Documentation aligned with Annex I and II of Turkish TP Guidelines.</td>
+                            <td>TP return (Form F 982) appended to the CIT return.</td>
+                            <td>TP return submitted with the CIT return; MF/LF retained separately.</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-mexico" onclick="showCountryDetail('mexico'); return false;">Mexico</a></td>
+                            <td>MF/LF informative returns triggered by Mexican revenue or transaction thresholds.</td>
+                            <td>Robust MF/LF with supporting analyses tied to informative returns.</td>
+                            <td>MF informative return, LF informative return, Exhibit 9 of DIM/ISSIF.</td>
+                            <td>Informative returns filed separately (LF due 15 May 2026; MF due 31 Dec 2026).</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-japan" onclick="showCountryDetail('japan'); return false;">Japan</a></td>
+                            <td>MF exempt (group revenue &lt; JPY 100B). LF if total international RPTs &gt; JPY 5B or specific RPTs &gt; JPY 300M.</td>
+                            <td>Detailed TP documentation supporting method selection and adjustments.</td>
+                            <td>Schedule 17-4 attached to the tax return.</td>
+                            <td>Schedule 17-4 filed with the CIT return; LF provided within 45 days of a request.</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-canada" onclick="showCountryDetail('canada'); return false;">Canada</a></td>
+                            <td>MF/LF thresholds not met, but reasonable efforts documentation is mandatory.</td>
+                            <td>Maintain contemporaneous documentation covering services and financing.</td>
+                            <td>T-106 Information Return for RPTs over CAD 1M.</td>
+                            <td>T-106 filed separately by 30 Jun 2026.</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-uk" onclick="showCountryDetail('uk'); return false;">United Kingdom (MEIKO UK Ltd.)</a></td>
+                            <td>MF/LF not required (group revenue &lt; EUR 750M).</td>
+                            <td>Maintain TP documentation demonstrating reasonable care.</td>
+                            <td>Transfer pricing disclosure within the corporation tax return.</td>
+                            <td>Disclosure included with the CIT return (30 Sep 2026).</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-india" onclick="showCountryDetail('india'); return false;">India (MEIKO Clean Solutions India Pvt. Ltd.)</a></td>
+                            <td>Local File required when international transaction thresholds are met. Master File not mandatory.</td>
+                            <td>Prepare Local File study supporting arm's-length pricing.</td>
+                            <td>Form 3CEB chartered accountant certificate.</td>
+                            <td>Form 3CEB filed electronically with the tax return (30 Nov 2026).</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-uae" onclick="showCountryDetail('uae'); return false;">United Arab Emirates</a></td>
+                            <td>Local File triggered when UAE revenue &gt; AED 200M. Master File not required.</td>
+                            <td>Maintain documentation consistent with IFRS financial statements when the threshold is met.</td>
+                            <td>No TP-specific forms; rely on financial statement disclosures.</td>
+                            <td>No separate filing; provide documentation upon request.</td>
+                        </tr>
+                        <tr>
+                            <td class="link-cell"><a href="#detail-australia" onclick="showCountryDetail('australia'); return false;">Australia</a></td>
+                            <td>MF/LF lodgment not required (group income &lt; AUD 1B); IDS required when dealings exceed AUD 2M.</td>
+                            <td>Prepare local TP documentation for penalty protection.</td>
+                            <td>International Dealings Schedule (IDS) filed with the income tax return.</td>
+                            <td>IDS lodged with the CIT return (15 Jul 2026); documentation retained separately.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        <div id="timeline" class="view">
+            <h2 class="section-title">2025-2026 Documentation and Filing Timeline</h2>
+            <div class="timeline-view">
+                <div class="month-section">
+                    <div class="month-header">December 2025</div>
+                    <ul class="deadline-list">
+                        <li>Belgium: File Form 275.CBC.NOT (CbCR notification) by 31 Dec 2025.</li>
+                        <li>Austria: Submit CbCR notification by 31 Dec 2025.</li>
+                        <li>Netherlands: Confirm MF/LF availability ahead of the CIT filing season.</li>
+                        <li>Germany: Finalise data capture for the Transaction Matrix before year-end.</li>
+                    </ul>
+                </div>
+                <div class="month-section">
+                    <div class="month-header">Q1 2026 (January - March)</div>
+                    <ul class="deadline-list">
+                        <li>Austria: Complete FY 2025 MF/LF by 31 Mar 2026.</li>
+                        <li>France: Update documentation by 30 Apr 2026.</li>
+                        <li>Japan: Submit Schedule 17-4 with the return and maintain the Local File by 31 Mar 2026.</li>
+                        <li>Mexico: Prepare the Local File by 31 Mar 2026 (or 15 May 2026 if ISSIF is filed).</li>
+                        <li>Turkey: File TP return (Form F 982) with the CIT return by 31 Mar 2026.</li>
+                    </ul>
+                </div>
+                <div class="month-section">
+                    <div class="month-header">Q2 2026 (April - June)</div>
+                    <ul class="deadline-list">
+                        <li>Mexico: File the Local File informative return by 15 May 2026.</li>
+                        <li>Australia: Prepare IDS disclosures for July lodgment.</li>
+                        <li>Canada: Complete TP documentation and file T-106 by 30 Jun 2026.</li>
+                        <li>Germany: Extraordinary transaction documentation due by 30 Jun 2026.</li>
+                    </ul>
+                </div>
+                <div class="month-section">
+                    <div class="month-header">Q3 2026 (July - September)</div>
+                    <ul class="deadline-list">
+                        <li>Australia: Lodge CIT return with IDS by 15 Jul 2026.</li>
+                        <li>Spain: Ensure MF/LF available for the CIT filing (approx. 25 Jul 2026).</li>
+                        <li>Belgium: File Form 275.LF with the CIT return (expected 31 Jul 2026).</li>
+                        <li>United Kingdom: File the CIT return including TP disclosure by 30 Sep 2026.</li>
+                        <li>United Arab Emirates: Finalise documentation by 30 Sep 2026.</li>
+                    </ul>
+                </div>
+                <div class="month-section">
+                    <div class="month-header">Q4 2026 (October - December)</div>
+                    <ul class="deadline-list">
+                        <li>France: File CERFA 2257-SD by 31 Oct 2026.</li>
+                        <li>India: File Form 3CEB by 30 Nov 2026.</li>
+                        <li>Spain: File Form 232 by 30 Nov 2026.</li>
+                        <li>Mexico: File the Master File informative return by 31 Dec 2026.</li>
+                        <li>Belgium: File Form 275.MF by 31 Dec 2026.</li>
+                        <li>Netherlands: Publish and lodge Public CbCR by 31 Dec 2026.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="critical" class="view">
+            <h2 class="section-title">Critical Action Items</h2>
+
+            <div class="alert alert-danger">
+                <h3>Immediate Priorities</h3>
+                <ul>
+                    <li>Germany: Enable 30-day delivery of the Transaction Matrix, Master File, and extraordinary documentation upon audit notice.</li>
+                    <li>Belgium: Update Form 275 packages with enhanced disclosures and ensure supporting evidence is ready for e-filing.</li>
+                    <li>France: Adjust documentation to the EUR 150M threshold and account for higher penalties.</li>
+                    <li>Netherlands: Build workflows for Public CbCR preparation, review, and publication.</li>
+                </ul>
+            </div>
+
+            <div class="requirement-grid">
+                <div class="requirement-card">
+                    <h3>2025 Regulatory Changes</h3>
+                    <ul>
+                        <li><strong>Germany:</strong> Automatic submission of the Transaction Matrix and Master File; Local File response window reduced to 30 days.</li>
+                        <li><strong>Belgium:</strong> Revised Form 275 series with expanded value chain and DEMPE coverage.</li>
+                        <li><strong>France:</strong> MF/LF threshold lowered to EUR 150M with increased penalties.</li>
+                        <li><strong>Netherlands:</strong> EU Public CbCR effective for FY 2025 (publication by 31 Dec 2026).</li>
+                        <li><strong>Denmark:</strong> Threshold raised with a de minimis exemption (monitor for future applicability).</li>
+                    </ul>
+                </div>
+                <div class="requirement-card">
+                    <h3>Process Improvements</h3>
+                    <ul>
+                        <li>Centralise MF/LF templates and country annexes for consistent annual updates.</li>
+                        <li>Track whether each TP form is filed with or separate from the CIT return and assign accountable owners.</li>
+                        <li>Align statutory accounts, tax returns, and TP narratives to avoid inconsistencies (especially for Public CbCR).</li>
+                        <li>Strengthen rapid-response protocols for short timelines (Germany, Spain, Japan).</li>
+                    </ul>
+                </div>
+                <div class="requirement-card">
+                    <h3>Data and Governance</h3>
+                    <ul>
+                        <li>Refresh intercompany agreements and supporting documentation (Belgium, Turkey, Mexico).</li>
+                        <li>Confirm revenue benchmarks for MF/LF thresholds annually (France, Austria, Netherlands, Turkey, UAE).</li>
+                        <li>Segment filings across Tax, Finance, and Legal teams with clear ownership and tracking.</li>
+                        <li>Provide quarterly board reports summarising compliance status and open risks.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="functional" class="view">
+            <h2 class="section-title">Functional Profiles and TP Scenarios</h2>
+
+            <table class="functional-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Primary IP Owner(s)</th>
+                        <th>Manufacturing Role</th>
+                        <th>Sales / Distribution Implications</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Current Assessment</td>
+                        <td>Germany most likely the entrepreneurial manufacturer and global IP owner.</td>
+                        <td>US and China facilities operate as contract, licensed, or regional IP manufacturers depending on final model.</td>
+                        <td>Scenario modelling needed to confirm profit allocation; supports either royalty or cost-plus flows.</td>
+                    </tr>
+                    <tr>
+                        <td>Scenario 1 – Central IP</td>
+                        <td>Germany retains all IP rights.</td>
+                        <td>US and China act as contract manufacturers earning 5–10% TNMM markup; Germany supplies semi-finished goods on cost-plus.</td>
+                        <td>Germany licenses distributors (3–7% royalties); straightforward hub-and-spoke pricing.</td>
+                    </tr>
+                    <tr>
+                        <td>Scenario 2 – Shared IP</td>
+                        <td>Germany, US, and China share IP ownership tied to DEMPE activities.</td>
+                        <td>Each manufacturer retains entrepreneurial exposure; profit split applied across the network.</td>
+                        <td>No internal royalties; semi-finished goods valued via contribution-based allocation.</td>
+                    </tr>
+                    <tr>
+                        <td>Scenario 3 – Regional IP</td>
+                        <td>Each manufacturing hub owns its regional rights and cross-licenses for exports.</td>
+                        <td>Facilities assume regional entrepreneur roles with local market risk.</td>
+                        <td>Inter-regional transfers priced using market benchmarks; increased focus on DEMPE and license governance.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="functional-notes">
+                <div class="note-column">
+                    <h3>Decision Framework</h3>
+                    <ol>
+                        <li>Confirm legal and economic IP ownership across the group.</li>
+                        <li>Map semi-finished and finished goods flows between manufacturing hubs and markets.</li>
+                        <li>Review local statutory requirements before finalising the TP methodology.</li>
+                    </ol>
+                </div>
+                <div class="note-column">
+                    <h3>Critical Information Needed</h3>
+                    <ul>
+                        <li>Definitive IP ownership structure and history of development.</li>
+                        <li>Detailed intercompany product flow data (volumes, values, routes).</li>
+                        <li>Comprehensive functional analysis across functions, assets, and risks.</li>
+                        <li>Inventory of legal agreements, APAs, and historic profit allocation outcomes.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showView(tabElement, viewName) {
+            if (viewName !== 'control') {
+                resetCountryView(false);
+            }
+
+            const views = document.querySelectorAll('.view');
+            views.forEach(view => view.classList.remove('active'));
+
+            const targetView = document.getElementById(viewName);
+            if (targetView) {
+                targetView.classList.add('active');
+            }
+
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            if (tabElement) {
+                tabElement.classList.add('active');
+            }
+
+            if (viewName === 'control') {
+                resetCountryView(true);
+            }
+        }
+
+        function showCountryDetail(countryId) {
+            const details = document.querySelectorAll('.country-detail');
+            details.forEach(detail => detail.classList.remove('active'));
+
+            const targetDetail = document.getElementById(`detail-${countryId}`);
+            if (targetDetail) {
+                targetDetail.classList.add('active');
+                targetDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function resetCountryView(shouldScroll = true) {
+            document.querySelectorAll('.country-detail').forEach(detail => detail.classList.remove('active'));
+
+            if (shouldScroll) {
+                const regionTop = document.getElementById('region-summary-top');
+                if (regionTop) {
+                    regionTop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
