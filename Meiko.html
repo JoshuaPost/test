@@ -3,12 +3,625 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEIKO Group Transfer Pricing Control Center (FYE 2025)</title>
-    <link rel="stylesheet" href="Meiko.css">
+    <title>Meiko Transfer Pricing Compliance Overview (FYE 2025)</title>
+    <style>
+        :root {
+            --ry-font: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+            --text: #0a0a0a;
+            --muted: #6b7280;
+            --bg: #f3f3f3;
+            --card: #fefefe;
+            --border: #e5e7eb;
+            --navy: #0d2a5c;
+            --accent: #c8921b;
+            --link: #1f4fbf;
+            --link-hover: #163a8a;
+            --radius: 12px;
+            --shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 20px rgba(0,0,0,.06);
+            --header-height: 96px;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--ry-font);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--navy);
+            color: var(--card);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .header-stat {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .nav-tabs {
+            background: var(--card);
+            padding: 0 30px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 20px 30px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .nav-tab:hover {
+            background: var(--bg);
+        }
+
+        .nav-tab.active {
+            border-bottom-color: var(--accent);
+            color: var(--navy);
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .region-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .region-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .region-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,.12);
+        }
+
+        .region-header {
+            background: var(--navy);
+            color: var(--card);
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .region-stats {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .entity-list {
+            padding: 20px;
+        }
+
+        .entity-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: var(--bg);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .entity-item:hover {
+            background: var(--accent);
+            color: var(--card);
+            transform: translateX(5px);
+        }
+
+        .entity-name {
+            font-weight: 500;
+        }
+
+        .entity-status {
+            display: flex;
+            gap: 8px;
+        }
+
+        .status-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-mf {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .status-lf {
+            background: var(--navy);
+            color: #fff;
+        }
+
+        .status-form {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .status-critical {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .status-new {
+            background: var(--warning);
+            color: #000;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .overview-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .overview-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 15px;
+        }
+
+        .overview-metric {
+            font-size: 36px;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .overview-description {
+            color: var(--muted);
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .requirement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .requirement-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .requirement-card h3 {
+            color: var(--navy);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .forms-flag {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .back-button {
+            background: var(--navy);
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: var(--accent);
+        }
+
+        .functional-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: var(--card);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .functional-table th,
+        .functional-table td {
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .functional-table th {
+            background: var(--navy);
+            color: var(--card);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .functional-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .functional-notes {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .note-column {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            flex: 1 1 280px;
+        }
+
+        .note-column h3 {
+            color: var(--navy);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .note-column ul,
+        .note-column ol {
+            margin-left: 18px;
+            line-height: 1.6;
+        }
+
+        .requirement-item {
+            margin-bottom: 12px;
+        }
+
+        .requirement-label {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .requirement-value {
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .summary-card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,.15);
+            background: var(--accent);
+        }
+
+        .summary-card:hover .summary-number,
+        .summary-card:hover .summary-label {
+            color: white;
+        }
+
+        .entity-item.highlighted {
+            background: var(--accent) !important;
+            color: white !important;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(200, 146, 27, 0.4);
+        }
+
+        .entity-item.highlighted .entity-name {
+            color: white;
+        }
+
+        .entity-item.dimmed {
+            opacity: 0.3;
+        }
+
+        .summary-number {
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .summary-label {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .timeline-view {
+            margin-top: 30px;
+        }
+
+        .month-section {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .month-header {
+            font-size: 20px;
+            color: var(--navy);
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .deadline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: var(--bg);
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .deadline-date {
+            font-weight: 600;
+            color: var(--navy);
+            min-width: 100px;
+        }
+
+        .deadline-country {
+            flex: 1;
+            padding: 0 15px;
+        }
+
+        .deadline-type {
+            display: flex;
+            gap: 8px;
+        }
+
+        .highlight-box {
+            background: #fef3c7;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin: 20px 0;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+        }
+
+        .alert-danger {
+            background: #fef2f2;
+            border-left: 4px solid var(--danger);
+            color: #991b1b;
+        }
+
+        .alert-warning {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            color: #92400e;
+        }
+
+        .country-detail {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            display: none;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .country-detail.active {
+            display: block;
+            animation: slideIn 0.3s ease-in;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .country-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 15px;
+        }
+
+        .country-title h2 {
+            margin-bottom: 5px;
+            color: var(--navy);
+        }
+
+        .country-entity {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .form-included {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .form-separate {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .new-requirement {
+            color: var(--warning);
+            font-weight: 600;
+        }
+
+        .status-badge.status-mf,
+        .status-badge.status-lf,
+        .status-badge.status-form,
+        .status-badge.status-critical,
+        .status-badge.status-new {
+            display: inline-block;
+        }
+
+        .section-title {
+            color: var(--navy);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--navy);
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .deadline-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .deadline-list li {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: var(--bg);
+            border-radius: 6px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .region-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .requirement-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-tabs {
+                padding: 0 15px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .country-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="header">
-        <h1>MEIKO Group Transfer Pricing Control Center</h1>
+        <h1>Meiko Group Transfer Pricing Compliance Overview</h1>
         <div class="header-info">
             <div class="header-stat"><strong>Group Revenue:</strong> EUR 500M</div>
             <div class="header-stat"><strong>FYE:</strong> 31 December 2025</div>
@@ -18,7 +631,7 @@
     </div>
 
     <div class="nav-tabs">
-        <div class="nav-tab active" onclick="showView(this, 'control')">Control Center</div>
+        <div class="nav-tab active" onclick="showView(this, 'control')">Overview</div>
         <div class="nav-tab" onclick="showView(this, 'timeline')">2025-2026 Deadlines</div>
         <div class="nav-tab" onclick="showView(this, 'critical')">Critical Actions</div>
         <div class="nav-tab" onclick="showView(this, 'functional')">Functional Profiles</div>
@@ -26,33 +639,25 @@
 
     <div class="content">
         <div id="control" class="view active">
-            <h2 class="section-title">Transfer Pricing Control Center</h2>
-
-            <div class="highlight-box">
-                <strong>Key Insight:</strong> Although MEIKO is below the EUR 750M CbCR threshold, eight countries still require Master File preparation, eleven require Local File documentation, and nine impose separate TP filings or disclosures.
-            </div>
+            <h2 class="section-title">Transfer Pricing Compliance Overview</h2>
 
             <div class="summary-grid">
-                <div class="summary-card">
+                <div class="summary-card" onclick="highlightByBadge('status-mf')">
                     <div class="summary-number">8</div>
                     <div class="summary-label">Master File Jurisdictions</div>
                 </div>
-                <div class="summary-card">
+                <div class="summary-card" onclick="highlightByBadge('status-lf')">
                     <div class="summary-number">11</div>
                     <div class="summary-label">Local File Jurisdictions</div>
                 </div>
-                <div class="summary-card">
+                <div class="summary-card" onclick="highlightByBadge('status-form')">
                     <div class="summary-number">9</div>
                     <div class="summary-label">Mandatory TP Filings</div>
                 </div>
-                <div class="summary-card">
+                <div class="summary-card" onclick="clearHighlights()">
                     <div class="summary-number">30</div>
                     <div class="summary-label">Day Fastest Response Window</div>
                 </div>
-            </div>
-
-            <div class="alert alert-warning">
-                <strong>Upcoming Focus:</strong> France and Austria documentation by 31 March 2026, Turkey TP return by 31 March 2026, and Mexico Local File informative return by 15 May 2026.
             </div>
 
             <h3 class="section-subtitle">Regional Snapshot</h3>
@@ -203,7 +808,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Germany</h2>
-                        <div class="country-entity">MEIKO Maschinenbau GmbH &amp; Co. KG and local sales entities</div>
+                        <div class="country-entity">Meiko Maschinenbau GmbH &amp; Co. KG and local sales entities</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -246,7 +851,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Austria</h2>
-                        <div class="country-entity">MEIKO Austria GmbH</div>
+                        <div class="country-entity">Meiko Austria GmbH</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -286,7 +891,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Belgium</h2>
-                        <div class="country-entity">MEIKO Clean Solutions Belgium SRL</div>
+                        <div class="country-entity">Meiko Clean Solutions Belgium SRL</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -329,7 +934,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>France</h2>
-                        <div class="country-entity">MEIKO FRANCE S.A.S</div>
+                        <div class="country-entity">Meiko FRANCE S.A.S</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -369,7 +974,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Netherlands</h2>
-                        <div class="country-entity">MEIKO Nederland B.V.</div>
+                        <div class="country-entity">Meiko Nederland B.V.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -408,7 +1013,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Spain</h2>
-                        <div class="country-entity">MEIKO Clean Solutions Iberica, S.L.U.</div>
+                        <div class="country-entity">Meiko Clean Solutions Iberica, S.L.U.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -449,7 +1054,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Turkey</h2>
-                        <div class="country-entity">MEIKO Turkey</div>
+                        <div class="country-entity">Meiko Turkey</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -487,7 +1092,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Mexico</h2>
-                        <div class="country-entity">MEIKO Mexico</div>
+                        <div class="country-entity">Meiko Mexico</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -529,7 +1134,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Japan</h2>
-                        <div class="country-entity">MEIKO Japan</div>
+                        <div class="country-entity">Meiko Japan</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -569,7 +1174,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Canada</h2>
-                        <div class="country-entity">MEIKO Canada</div>
+                        <div class="country-entity">Meiko Canada</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -607,7 +1212,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>United Kingdom</h2>
-                        <div class="country-entity">MEIKO UK Ltd.</div>
+                        <div class="country-entity">Meiko UK Ltd.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -644,7 +1249,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>India</h2>
-                        <div class="country-entity">MEIKO Clean Solutions (India) Pvt. Ltd.</div>
+                        <div class="country-entity">Meiko Clean Solutions (India) Pvt. Ltd.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -683,7 +1288,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>United Arab Emirates</h2>
-                        <div class="country-entity">MEIKO Middle East FZE</div>
+                        <div class="country-entity">Meiko Middle East FZE</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -722,7 +1327,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Australia</h2>
-                        <div class="country-entity">MEIKO Australia Pty Ltd.</div>
+                        <div class="country-entity">Meiko Australia Pty Ltd.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -757,121 +1362,6 @@
                 </div>
             </div>
         </div>
-
-            <div class="compliance-table-wrapper">
-                <h3 class="section-subtitle" style="margin-top: 0;">TP Documentation and Filing Matrix (FYE 31 December 2025)</h3>
-                <table class="compliance-table">
-                    <thead>
-                        <tr>
-                            <th>Country / Entity</th>
-                            <th>MF / LF Thresholds</th>
-                            <th>Documentation Requirements</th>
-                            <th>TP Forms and Disclosures</th>
-                            <th>Filed With CIT Return?</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-germany" onclick="showCountryDetail('germany'); return false;">Germany (HQ/Sales)</a></td>
-                            <td>MF: Local sales &gt; EUR 100M. LF: Goods RPTs &gt; EUR 6M or other RPTs &gt; EUR 600K.</td>
-                            <td>BEPS Action 13 MF/LF with detailed transaction-level support.</td>
-                            <td>Transaction Matrix (automatic filing), MF/LF ready for audit, CIT disclosure of foreign related parties.</td>
-                            <td>Transaction Matrix submitted separately within 30 days of an audit notice; CIT disclosure included with the return.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-austria" onclick="showCountryDetail('austria'); return false;">Austria</a></td>
-                            <td>MF/LF required if local turnover &gt;= EUR 50M in each of the two preceding FYs.</td>
-                            <td>OECD-style MF/LF with scaled documentation even when below thresholds.</td>
-                            <td>CbCR notification due 31 Dec 2025.</td>
-                            <td>CbCR notification filed separately; MF/LF retained for audit.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-belgium" onclick="showCountryDetail('belgium'); return false;">Belgium (MEIKO Clean Solutions Belgium SRL)</a></td>
-                            <td>MF/LF when revenue &gt;= EUR 50M, assets &gt;= EUR 1B, or FTE &gt;= 100. LF Part II if RPTs &gt; EUR 1M.</td>
-                            <td>Mandatory OECD-aligned MF/LF with enhanced detail for FY 2025 onward.</td>
-                            <td>Form 275.MF, Form 275.LF, Form 275.CBC.NOT.</td>
-                            <td>Form 275.LF filed with the CIT return; other forms submitted separately.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-france" onclick="showCountryDetail('france'); return false;">France (MEIKO FRANCE S.A.S)</a></td>
-                            <td>MF/LF when turnover or gross assets &gt;= EUR 150M.</td>
-                            <td>Contemporaneous MF/LF with heightened penalty exposure.</td>
-                            <td>CERFA 2257-SD transfer pricing statement.</td>
-                            <td>CERFA 2257-SD filed separately within six months after the CIT return.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-netherlands" onclick="showCountryDetail('netherlands'); return false;">Netherlands (MEIKO Nederland B.V.)</a></td>
-                            <td>Group revenue &gt;= EUR 50M in the preceding FY.</td>
-                            <td>MF/LF retained locally and aligned with Public CbCR narrative.</td>
-                            <td>EU Public CbCR (first reporting year FY 2025).</td>
-                            <td>Public CbCR lodged and published separately by 31 Dec 2026.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-spain" onclick="showCountryDetail('spain'); return false;">Spain (MEIKO Clean Solutions Iberica, S.L.U.)</a></td>
-                            <td>MF if group turnover &gt;= EUR 45M. LF if counterparty transactions &gt;= EUR 250k.</td>
-                            <td>Annual MF/LF with a 10-day audit response expectation.</td>
-                            <td>Form 232 informative declaration.</td>
-                            <td>Form 232 filed separately (30 Nov 2026).</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-turkey" onclick="showCountryDetail('turkey'); return false;">Turkey</a></td>
-                            <td>MF/LF when assets and turnover each exceed TRY 500M.</td>
-                            <td>Documentation aligned with Annex I and II of Turkish TP Guidelines.</td>
-                            <td>TP return (Form F 982) appended to the CIT return.</td>
-                            <td>TP return submitted with the CIT return; MF/LF retained separately.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-mexico" onclick="showCountryDetail('mexico'); return false;">Mexico</a></td>
-                            <td>MF/LF informative returns triggered by Mexican revenue or transaction thresholds.</td>
-                            <td>Robust MF/LF with supporting analyses tied to informative returns.</td>
-                            <td>MF informative return, LF informative return, Exhibit 9 of DIM/ISSIF.</td>
-                            <td>Informative returns filed separately (LF due 15 May 2026; MF due 31 Dec 2026).</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-japan" onclick="showCountryDetail('japan'); return false;">Japan</a></td>
-                            <td>MF exempt (group revenue &lt; JPY 100B). LF if total international RPTs &gt; JPY 5B or specific RPTs &gt; JPY 300M.</td>
-                            <td>Detailed TP documentation supporting method selection and adjustments.</td>
-                            <td>Schedule 17-4 attached to the tax return.</td>
-                            <td>Schedule 17-4 filed with the CIT return; LF provided within 45 days of a request.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-canada" onclick="showCountryDetail('canada'); return false;">Canada</a></td>
-                            <td>MF/LF thresholds not met, but reasonable efforts documentation is mandatory.</td>
-                            <td>Maintain contemporaneous documentation covering services and financing.</td>
-                            <td>T-106 Information Return for RPTs over CAD 1M.</td>
-                            <td>T-106 filed separately by 30 Jun 2026.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-uk" onclick="showCountryDetail('uk'); return false;">United Kingdom (MEIKO UK Ltd.)</a></td>
-                            <td>MF/LF not required (group revenue &lt; EUR 750M).</td>
-                            <td>Maintain TP documentation demonstrating reasonable care.</td>
-                            <td>Transfer pricing disclosure within the corporation tax return.</td>
-                            <td>Disclosure included with the CIT return (30 Sep 2026).</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-india" onclick="showCountryDetail('india'); return false;">India (MEIKO Clean Solutions India Pvt. Ltd.)</a></td>
-                            <td>Local File required when international transaction thresholds are met. Master File not mandatory.</td>
-                            <td>Prepare Local File study supporting arm's-length pricing.</td>
-                            <td>Form 3CEB chartered accountant certificate.</td>
-                            <td>Form 3CEB filed electronically with the tax return (30 Nov 2026).</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-uae" onclick="showCountryDetail('uae'); return false;">United Arab Emirates</a></td>
-                            <td>Local File triggered when UAE revenue &gt; AED 200M. Master File not required.</td>
-                            <td>Maintain documentation consistent with IFRS financial statements when the threshold is met.</td>
-                            <td>No TP-specific forms; rely on financial statement disclosures.</td>
-                            <td>No separate filing; provide documentation upon request.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-australia" onclick="showCountryDetail('australia'); return false;">Australia</a></td>
-                            <td>MF/LF lodgment not required (group income &lt; AUD 1B); IDS required when dealings exceed AUD 2M.</td>
-                            <td>Prepare local TP documentation for penalty protection.</td>
-                            <td>International Dealings Schedule (IDS) filed with the income tax return.</td>
-                            <td>IDS lodged with the CIT return (15 Jul 2026); documentation retained separately.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
         <div id="timeline" class="view">
             <h2 class="section-title">2025-2026 Documentation and Filing Timeline</h2>
@@ -1082,9 +1572,47 @@
                 }
             }
         }
+
+        function highlightByBadge(badgeClass) {
+            // Clear any existing highlights first
+            clearHighlights();
+
+            // Get all entity items
+            const entityItems = document.querySelectorAll('.entity-item');
+
+            entityItems.forEach(item => {
+                // Check if this entity has the specified badge
+                const hasBadge = item.querySelector(`.status-badge.${badgeClass}`);
+
+                if (hasBadge) {
+                    // Highlight entities with the badge
+                    item.classList.add('highlighted');
+                } else {
+                    // Dim entities without the badge
+                    item.classList.add('dimmed');
+                }
+            });
+
+            // Scroll to regional snapshot
+            const regionTop = document.getElementById('region-summary-top');
+            if (regionTop) {
+                regionTop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function clearHighlights() {
+            // Remove all highlight and dim classes
+            const entityItems = document.querySelectorAll('.entity-item');
+            entityItems.forEach(item => {
+                item.classList.remove('highlighted');
+                item.classList.remove('dimmed');
+            });
+        }
     </script>
 </body>
 </html>
+
+
 
 
 
