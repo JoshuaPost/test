@@ -540,53 +540,6 @@
             display: inline-block;
         }
 
-        .compliance-table-wrapper {
-            margin-top: 40px;
-        }
-
-        .compliance-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--card);
-            box-shadow: var(--shadow);
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-
-        .compliance-table th,
-        .compliance-table td {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border);
-            text-align: left;
-            vertical-align: top;
-        }
-
-        .compliance-table th {
-            background: var(--navy);
-            color: var(--card);
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .compliance-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .compliance-table tr:hover {
-            background: var(--bg);
-        }
-
-        .link-cell a {
-            color: var(--link);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .link-cell a:hover {
-            color: var(--link-hover);
-            text-decoration: underline;
-        }
-
         .section-title {
             color: var(--navy);
             font-size: 28px;
@@ -634,10 +587,6 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
-            }
-
-            .compliance-table-wrapper {
-                overflow-x: auto;
             }
         }
     </style>
@@ -1391,121 +1340,6 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-
-            <div class="compliance-table-wrapper">
-                <h3 class="section-subtitle" style="margin-top: 0;">TP Documentation and Filing Matrix (FYE 31 December 2025)</h3>
-                <table class="compliance-table">
-                    <thead>
-                        <tr>
-                            <th>Country / Entity</th>
-                            <th>MF / LF Thresholds</th>
-                            <th>Documentation Requirements</th>
-                            <th>TP Forms and Disclosures</th>
-                            <th>Filed With CIT Return?</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-germany" onclick="showCountryDetail('germany'); return false;">Germany (HQ/Sales)</a></td>
-                            <td>MF: Local sales &gt; EUR 100M. LF: Goods RPTs &gt; EUR 6M or other RPTs &gt; EUR 600K.</td>
-                            <td>BEPS Action 13 MF/LF with detailed transaction-level support.</td>
-                            <td>Transaction Matrix (automatic filing), MF/LF ready for audit, CIT disclosure of foreign related parties.</td>
-                            <td>Transaction Matrix submitted separately within 30 days of an audit notice; CIT disclosure included with the return.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-austria" onclick="showCountryDetail('austria'); return false;">Austria</a></td>
-                            <td>MF/LF required if local turnover &gt;= EUR 50M in each of the two preceding FYs.</td>
-                            <td>OECD-style MF/LF with scaled documentation even when below thresholds.</td>
-                            <td>CbCR notification due 31 Dec 2025.</td>
-                            <td>CbCR notification filed separately; MF/LF retained for audit.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-belgium" onclick="showCountryDetail('belgium'); return false;">Belgium (MEIKO Clean Solutions Belgium SRL)</a></td>
-                            <td>MF/LF when revenue &gt;= EUR 50M, assets &gt;= EUR 1B, or FTE &gt;= 100. LF Part II if RPTs &gt; EUR 1M.</td>
-                            <td>Mandatory OECD-aligned MF/LF with enhanced detail for FY 2025 onward.</td>
-                            <td>Form 275.MF, Form 275.LF, Form 275.CBC.NOT.</td>
-                            <td>Form 275.LF filed with the CIT return; other forms submitted separately.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-france" onclick="showCountryDetail('france'); return false;">France (MEIKO FRANCE S.A.S)</a></td>
-                            <td>MF/LF when turnover or gross assets &gt;= EUR 150M.</td>
-                            <td>Contemporaneous MF/LF with heightened penalty exposure.</td>
-                            <td>CERFA 2257-SD transfer pricing statement.</td>
-                            <td>CERFA 2257-SD filed separately within six months after the CIT return.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-netherlands" onclick="showCountryDetail('netherlands'); return false;">Netherlands (MEIKO Nederland B.V.)</a></td>
-                            <td>Group revenue &gt;= EUR 50M in the preceding FY.</td>
-                            <td>MF/LF retained locally and aligned with Public CbCR narrative.</td>
-                            <td>EU Public CbCR (first reporting year FY 2025).</td>
-                            <td>Public CbCR lodged and published separately by 31 Dec 2026.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-spain" onclick="showCountryDetail('spain'); return false;">Spain (MEIKO Clean Solutions Iberica, S.L.U.)</a></td>
-                            <td>MF if group turnover &gt;= EUR 45M. LF if counterparty transactions &gt;= EUR 250k.</td>
-                            <td>Annual MF/LF with a 10-day audit response expectation.</td>
-                            <td>Form 232 informative declaration.</td>
-                            <td>Form 232 filed separately (30 Nov 2026).</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-turkey" onclick="showCountryDetail('turkey'); return false;">Turkey</a></td>
-                            <td>MF/LF when assets and turnover each exceed TRY 500M.</td>
-                            <td>Documentation aligned with Annex I and II of Turkish TP Guidelines.</td>
-                            <td>TP return (Form F 982) appended to the CIT return.</td>
-                            <td>TP return submitted with the CIT return; MF/LF retained separately.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-mexico" onclick="showCountryDetail('mexico'); return false;">Mexico</a></td>
-                            <td>MF/LF informative returns triggered by Mexican revenue or transaction thresholds.</td>
-                            <td>Robust MF/LF with supporting analyses tied to informative returns.</td>
-                            <td>MF informative return, LF informative return, Exhibit 9 of DIM/ISSIF.</td>
-                            <td>Informative returns filed separately (LF due 15 May 2026; MF due 31 Dec 2026).</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-japan" onclick="showCountryDetail('japan'); return false;">Japan</a></td>
-                            <td>MF exempt (group revenue &lt; JPY 100B). LF if total international RPTs &gt; JPY 5B or specific RPTs &gt; JPY 300M.</td>
-                            <td>Detailed TP documentation supporting method selection and adjustments.</td>
-                            <td>Schedule 17-4 attached to the tax return.</td>
-                            <td>Schedule 17-4 filed with the CIT return; LF provided within 45 days of a request.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-canada" onclick="showCountryDetail('canada'); return false;">Canada</a></td>
-                            <td>MF/LF thresholds not met, but reasonable efforts documentation is mandatory.</td>
-                            <td>Maintain contemporaneous documentation covering services and financing.</td>
-                            <td>T-106 Information Return for RPTs over CAD 1M.</td>
-                            <td>T-106 filed separately by 30 Jun 2026.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-uk" onclick="showCountryDetail('uk'); return false;">United Kingdom (MEIKO UK Ltd.)</a></td>
-                            <td>MF/LF not required (group revenue &lt; EUR 750M).</td>
-                            <td>Maintain TP documentation demonstrating reasonable care.</td>
-                            <td>Transfer pricing disclosure within the corporation tax return.</td>
-                            <td>Disclosure included with the CIT return (30 Sep 2026).</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-india" onclick="showCountryDetail('india'); return false;">India (MEIKO Clean Solutions India Pvt. Ltd.)</a></td>
-                            <td>Local File required when international transaction thresholds are met. Master File not mandatory.</td>
-                            <td>Prepare Local File study supporting arm's-length pricing.</td>
-                            <td>Form 3CEB chartered accountant certificate.</td>
-                            <td>Form 3CEB filed electronically with the tax return (30 Nov 2026).</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-uae" onclick="showCountryDetail('uae'); return false;">United Arab Emirates</a></td>
-                            <td>Local File triggered when UAE revenue &gt; AED 200M. Master File not required.</td>
-                            <td>Maintain documentation consistent with IFRS financial statements when the threshold is met.</td>
-                            <td>No TP-specific forms; rely on financial statement disclosures.</td>
-                            <td>No separate filing; provide documentation upon request.</td>
-                        </tr>
-                        <tr>
-                            <td class="link-cell"><a href="#detail-australia" onclick="showCountryDetail('australia'); return false;">Australia</a></td>
-                            <td>MF/LF lodgment not required (group income &lt; AUD 1B); IDS required when dealings exceed AUD 2M.</td>
-                            <td>Prepare local TP documentation for penalty protection.</td>
-                            <td>International Dealings Schedule (IDS) filed with the income tax return.</td>
-                            <td>IDS lodged with the CIT return (15 Jul 2026); documentation retained separately.</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
 
