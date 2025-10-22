@@ -384,6 +384,34 @@
             border-radius: var(--radius);
             text-align: center;
             box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,.15);
+            background: var(--accent);
+        }
+
+        .summary-card:hover .summary-number,
+        .summary-card:hover .summary-label {
+            color: white;
+        }
+
+        .entity-item.highlighted {
+            background: var(--accent) !important;
+            color: white !important;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(200, 146, 27, 0.4);
+        }
+
+        .entity-item.highlighted .entity-name {
+            color: white;
+        }
+
+        .entity-item.dimmed {
+            opacity: 0.3;
         }
 
         .summary-number {
@@ -593,7 +621,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>MEIKO Group Transfer Pricing Control Center</h1>
+        <h1>Meiko Group Transfer Pricing Compliance Overview</h1>
         <div class="header-info">
             <div class="header-stat"><strong>Group Revenue:</strong> EUR 500M</div>
             <div class="header-stat"><strong>FYE:</strong> 31 December 2025</div>
@@ -603,7 +631,7 @@
     </div>
 
     <div class="nav-tabs">
-        <div class="nav-tab active" onclick="showView(this, 'control')">Control Center</div>
+        <div class="nav-tab active" onclick="showView(this, 'control')">Overview</div>
         <div class="nav-tab" onclick="showView(this, 'timeline')">2025-2026 Deadlines</div>
         <div class="nav-tab" onclick="showView(this, 'critical')">Critical Actions</div>
         <div class="nav-tab" onclick="showView(this, 'functional')">Functional Profiles</div>
@@ -611,33 +639,25 @@
 
     <div class="content">
         <div id="control" class="view active">
-            <h2 class="section-title">Transfer Pricing Control Center</h2>
-
-            <div class="highlight-box">
-                <strong>Key Insight:</strong> Although MEIKO is below the EUR 750M CbCR threshold, eight countries still require Master File preparation, eleven require Local File documentation, and nine impose separate TP filings or disclosures.
-            </div>
+            <h2 class="section-title">Transfer Pricing Compliance Overview</h2>
 
             <div class="summary-grid">
-                <div class="summary-card">
+                <div class="summary-card" onclick="highlightByBadge('status-mf')">
                     <div class="summary-number">8</div>
                     <div class="summary-label">Master File Jurisdictions</div>
                 </div>
-                <div class="summary-card">
+                <div class="summary-card" onclick="highlightByBadge('status-lf')">
                     <div class="summary-number">11</div>
                     <div class="summary-label">Local File Jurisdictions</div>
                 </div>
-                <div class="summary-card">
+                <div class="summary-card" onclick="highlightByBadge('status-form')">
                     <div class="summary-number">9</div>
                     <div class="summary-label">Mandatory TP Filings</div>
                 </div>
-                <div class="summary-card">
+                <div class="summary-card" onclick="clearHighlights()">
                     <div class="summary-number">30</div>
                     <div class="summary-label">Day Fastest Response Window</div>
                 </div>
-            </div>
-
-            <div class="alert alert-warning">
-                <strong>Upcoming Focus:</strong> France and Austria documentation by 31 March 2026, Turkey TP return by 31 March 2026, and Mexico Local File informative return by 15 May 2026.
             </div>
 
             <h3 class="section-subtitle">Regional Snapshot</h3>
@@ -788,7 +808,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Germany</h2>
-                        <div class="country-entity">MEIKO Maschinenbau GmbH &amp; Co. KG and local sales entities</div>
+                        <div class="country-entity">Meiko Maschinenbau GmbH &amp; Co. KG and local sales entities</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -831,7 +851,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Austria</h2>
-                        <div class="country-entity">MEIKO Austria GmbH</div>
+                        <div class="country-entity">Meiko Austria GmbH</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -871,7 +891,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Belgium</h2>
-                        <div class="country-entity">MEIKO Clean Solutions Belgium SRL</div>
+                        <div class="country-entity">Meiko Clean Solutions Belgium SRL</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -914,7 +934,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>France</h2>
-                        <div class="country-entity">MEIKO FRANCE S.A.S</div>
+                        <div class="country-entity">Meiko FRANCE S.A.S</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -954,7 +974,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Netherlands</h2>
-                        <div class="country-entity">MEIKO Nederland B.V.</div>
+                        <div class="country-entity">Meiko Nederland B.V.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -993,7 +1013,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Spain</h2>
-                        <div class="country-entity">MEIKO Clean Solutions Iberica, S.L.U.</div>
+                        <div class="country-entity">Meiko Clean Solutions Iberica, S.L.U.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -1034,7 +1054,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Turkey</h2>
-                        <div class="country-entity">MEIKO Turkey</div>
+                        <div class="country-entity">Meiko Turkey</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -1072,7 +1092,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Mexico</h2>
-                        <div class="country-entity">MEIKO Mexico</div>
+                        <div class="country-entity">Meiko Mexico</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -1114,7 +1134,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Japan</h2>
-                        <div class="country-entity">MEIKO Japan</div>
+                        <div class="country-entity">Meiko Japan</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -1154,7 +1174,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Canada</h2>
-                        <div class="country-entity">MEIKO Canada</div>
+                        <div class="country-entity">Meiko Canada</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -1192,7 +1212,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>United Kingdom</h2>
-                        <div class="country-entity">MEIKO UK Ltd.</div>
+                        <div class="country-entity">Meiko UK Ltd.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -1229,7 +1249,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>India</h2>
-                        <div class="country-entity">MEIKO Clean Solutions (India) Pvt. Ltd.</div>
+                        <div class="country-entity">Meiko Clean Solutions (India) Pvt. Ltd.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -1268,7 +1288,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>United Arab Emirates</h2>
-                        <div class="country-entity">MEIKO Middle East FZE</div>
+                        <div class="country-entity">Meiko Middle East FZE</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -1307,7 +1327,7 @@
                 <div class="country-header">
                     <div class="country-title">
                         <h2>Australia</h2>
-                        <div class="country-entity">MEIKO Australia Pty Ltd.</div>
+                        <div class="country-entity">Meiko Australia Pty Ltd.</div>
                     </div>
                     <button class="back-button" type="button" onclick="resetCountryView()">Back to Regional Summary</button>
                 </div>
@@ -1551,6 +1571,42 @@
                     regionTop.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
+        }
+
+        function highlightByBadge(badgeClass) {
+            // Clear any existing highlights first
+            clearHighlights();
+
+            // Get all entity items
+            const entityItems = document.querySelectorAll('.entity-item');
+
+            entityItems.forEach(item => {
+                // Check if this entity has the specified badge
+                const hasBadge = item.querySelector(`.status-badge.${badgeClass}`);
+
+                if (hasBadge) {
+                    // Highlight entities with the badge
+                    item.classList.add('highlighted');
+                } else {
+                    // Dim entities without the badge
+                    item.classList.add('dimmed');
+                }
+            });
+
+            // Scroll to regional snapshot
+            const regionTop = document.getElementById('region-summary-top');
+            if (regionTop) {
+                regionTop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function clearHighlights() {
+            // Remove all highlight and dim classes
+            const entityItems = document.querySelectorAll('.entity-item');
+            entityItems.forEach(item => {
+                item.classList.remove('highlighted');
+                item.classList.remove('dimmed');
+            });
         }
     </script>
 </body>
