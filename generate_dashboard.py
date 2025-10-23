@@ -377,14 +377,19 @@ def generate_html(data, output_file="dashboard.html"):
 
     # Replace statistics
     html = html.replace('<div class="summary-number">11</div>',
-                       f'<div class="summary-number">{stats["mf_count"]}</div>')
+                       f'<div class="summary-number">{stats["mf_count"]}</div>', 1)
     html = html.replace('<div class="summary-number">19</div>',
-                       f'<div class="summary-number">{stats["lf_count"]}</div>')
+                       f'<div class="summary-number">{stats["lf_count"]}</div>', 1)
     html = html.replace('<div class="summary-number">12</div>',
-                       f'<div class="summary-number">{stats["forms_count"]}</div>')
+                       f'<div class="summary-number">{stats["forms_count"]}</div>', 1)
 
-    # This is a simplified version - you'd need more sophisticated replacement
-    # For now, save the data as JSON for a more complete implementation
+    # Write the output file
+    try:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(html)
+    except Exception as e:
+        print(f"✗ Error writing output file: {e}")
+        return
 
     print(f"✓ HTML dashboard generated: {output_file}")
     print(f"  - {len(data['countries'])} countries")
