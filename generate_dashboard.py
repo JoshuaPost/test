@@ -9,6 +9,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 import sys
 import json
+import os
 from datetime import datetime
 
 def create_excel_template(output_file="TP_Dashboard_Template.xlsx"):
@@ -307,12 +308,38 @@ def read_excel_data(excel_file):
 def generate_html(data, output_file="dashboard.html"):
     """Generate HTML dashboard from data"""
 
-    # Read the template HTML
-    try:
-        with open('/home/user/test/Meiko.html', 'r') as f:
-            template = f.read()
-    except FileNotFoundError:
+    # Find the template HTML - check multiple locations
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    current_dir = os.getcwd()
+
+    template_locations = [
+        os.path.join(current_dir, 'Meiko.html'),           # Current directory
+        os.path.join(script_dir, 'Meiko.html'),            # Script directory
+        '/home/user/test/Meiko.html',                       # Original location
+    ]
+
+    template = None
+    template_path = None
+
+    for path in template_locations:
+        if os.path.exists(path):
+            template_path = path
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    template = f.read()
+                print(f"✓ Using template: {path}")
+                break
+            except Exception as e:
+                print(f"✗ Error reading {path}: {e}")
+                continue
+
+    if not template:
         print("✗ Error: Meiko.html template not found")
+        print("\nSearched in:")
+        for path in template_locations:
+            print(f"  - {path}")
+        print("\nPlease ensure Meiko.html is in the same directory as your Excel file")
+        print("or in the same directory as generate_dashboard.py")
         return
 
     # Calculate statistics
