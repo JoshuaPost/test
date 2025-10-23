@@ -533,14 +533,44 @@ def create_cbcr_notifications_sheet(wb):
     ws.add_data_validation(dv_date_rule)
     ws.add_data_validation(dv_linked)
 
-    # Apply validations to columns (rows 2-1000)
-    dv_applicability.add(f'B2:B1000')  # Applicability
-    dv_frequency.add(f'C2:C1000')  # Notification Frequency
-    dv_filer.add(f'D2:D1000')  # Filer Type
-    dv_joint.add(f'E2:E1000')  # Joint Filing Allowed
-    dv_in_cit.add(f'F2:F1000')  # Included in CIT Return
-    dv_date_rule.add(f'I2:I1000')  # Submission Date Rule
-    dv_linked.add(f'L2:L1000')  # Linked To
+    # Apply validations to columns (rows 3-1000)
+    dv_applicability.add(f'B3:B1000')  # Applicability
+    dv_frequency.add(f'C3:C1000')  # Notification Frequency
+    dv_filer.add(f'D3:D1000')  # Filer Type
+    dv_joint.add(f'E3:E1000')  # Joint Filing Allowed
+    dv_in_cit.add(f'F3:F1000')  # Included in CIT Return
+    dv_date_rule.add(f'I3:I1000')  # Submission Date Rule
+    dv_linked.add(f'L3:L1000')  # Linked To
+
+    # Add helpful explanation row
+    explanation_fill = PatternFill(start_color="FFF9C4", end_color="FFF9C4", fill_type="solid")
+    explanation_font = Font(italic=True, size=9)
+
+    explanations = [
+        'Belgium, France, UK, Germany, etc.',
+        'Always / Conditional / Notification Only / Never Required / N/A',
+        'Annual / One-Time / Upon Change',
+        'UPE / Local CE / One CE for All / Other',
+        'Yes / No / Not Specified',
+        'Yes / No',
+        'Separate Form / Portal / Within CIT Return / BZSt Portal',
+        'Form 275.CBC.NOT / DAS2-CbCR / SA / BZSt CbCR Notification',
+        'None / CIT Date / FYE-Based / Fixed / Upon Request / With Tax Return',
+        'Details (e.g., By 31 Dec following FY, Within 3 months of change)',
+        'Valid for FY / Until entity or UPE info changes / Annual / Until change in filing entity',
+        'MF / LF / CbCR / Standalone',
+        'FY2016, 2017, etc.',
+        'Context about notification rules and requirements'
+    ]
+
+    for col_idx, explanation in enumerate(explanations, start=1):
+        cell = ws.cell(row=2, column=col_idx)
+        cell.value = explanation
+        cell.fill = explanation_fill
+        cell.font = explanation_font
+        cell.alignment = Alignment(wrap_text=True, vertical='top')
+
+    ws.row_dimensions[2].height = 60
 
     # Examples
     examples = [
@@ -567,7 +597,7 @@ def create_cbcr_notifications_sheet(wb):
          'One German group entity can file notification for all German entities'],
     ]
 
-    for row_idx, example in enumerate(examples, start=2):
+    for row_idx, example in enumerate(examples, start=3):
         for col_idx, value in enumerate(example, start=1):
             cell = ws.cell(row=row_idx, column=col_idx)
             cell.value = value
@@ -641,13 +671,42 @@ def create_tp_forms_sheet(wb):
     ws.add_data_validation(dv_esig)
     ws.add_data_validation(dv_timestamp)
 
-    # Apply validations to columns (rows 2-1000)
-    dv_form_type.add(f'C2:C1000')  # Form Type
-    dv_trigger.add(f'D2:D1000')  # Form Trigger
-    dv_linked.add(f'E2:E1000')  # Linked To
-    dv_date_rule.add(f'G2:G1000')  # Submission Date Rule
-    dv_esig.add(f'J2:J1000')  # Electronic Signature Required
-    dv_timestamp.add(f'K2:K1000')  # Timestamp Required
+    # Apply validations to columns (rows 3-1000)
+    dv_form_type.add(f'C3:C1000')  # Form Type
+    dv_trigger.add(f'D3:D1000')  # Form Trigger
+    dv_linked.add(f'E3:E1000')  # Linked To
+    dv_date_rule.add(f'G3:G1000')  # Submission Date Rule
+    dv_esig.add(f'J3:J1000')  # Electronic Signature Required
+    dv_timestamp.add(f'K3:K1000')  # Timestamp Required
+
+    # Add helpful explanation row
+    explanation_fill = PatternFill(start_color="FFF9C4", end_color="FFF9C4", fill_type="solid")
+    explanation_font = Font(italic=True, size=9)
+
+    explanations = [
+        'Belgium, Spain, Italy, Germany, etc.',
+        'Form 275.MF / Form 232 / RS 106 / Transaction Matrix',
+        'TP Disclosure / TP Return / MF Summary / LF Summary / CbCR Notification / Other',
+        'Always / If MF Required / If LF Required / If MF or LF Required / If CbCR Required / Other',
+        'MF / LF / CbCR / Standalone',
+        'Summary form with key data / Annual TP informative return / TP disclosure / Structured overview of RPTs',
+        'None / CIT Date / FYE-Based / Fixed / Upon Request / With Tax Return',
+        'Details (e.g., 31 Dec following FY, Approx 25 Aug, Within 30 days of audit notice)',
+        'Days to submit if upon request (30, 14, 10, etc.)',
+        'Yes / No',
+        'Yes / No / Electronic Timestamp',
+        'FY2016, 2010, 2024, etc.',
+        'Context about form requirements and special rules'
+    ]
+
+    for col_idx, explanation in enumerate(explanations, start=1):
+        cell = ws.cell(row=2, column=col_idx)
+        cell.value = explanation
+        cell.fill = explanation_fill
+        cell.font = explanation_font
+        cell.alignment = Alignment(wrap_text=True, vertical='top')
+
+    ws.row_dimensions[2].height = 60
 
     # Examples
     examples = [
@@ -677,7 +736,7 @@ def create_tp_forms_sheet(wb):
          'NEW 2024 requirement - automatic submission with MF upon audit'],
     ]
 
-    for row_idx, example in enumerate(examples, start=2):
+    for row_idx, example in enumerate(examples, start=3):
         for col_idx, value in enumerate(example, start=1):
             cell = ws.cell(row=row_idx, column=col_idx)
             cell.value = value
