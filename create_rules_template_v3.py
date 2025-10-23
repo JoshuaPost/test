@@ -269,6 +269,86 @@ def create_mf_sheet(wb):
     return ws
 
 
+def create_lf_sheet(wb):
+    """Create Local File Requirements sheet with global schema"""
+
+    ws = wb.create_sheet("LF Requirements")
+
+    # LF-specific columns (inserted after Applicability)
+    lf_specific = [
+        'Integrated With',
+        'Submission Channel',
+        'Special Deadline Condition',
+        'Penalty Protection Only'
+    ]
+
+    all_columns = create_global_sheet_structure(ws, "LF Requirements", lf_specific)
+
+    # Example rows
+    example_fill = PatternFill(start_color="E8F5E9", end_color="E8F5E9", fill_type="solid")
+
+    examples = [
+        # Germany - Multi-condition OR
+        ['Germany', 'Conditional', '', '', '', 'No',
+         'LF-DE-1', '1', 'OR', 'RPTs', 'Transaction (Goods)', 6000000, 'EUR', '>',
+         'CIT Date', 'Expected 31 Jul (CIT filing)', 'Upon Request', 'Within 30 days of audit notice', 30, 'FY2024',
+         'LF required if goods RPTs exceed 6M EUR', 'Automatic submission upon audit'],
+
+        ['Germany', 'Conditional', '', '', '', 'No',
+         'LF-DE-1', '2', 'OR', 'RPTs', 'Transaction (Services)', 600000, 'EUR', '>',
+         'CIT Date', 'Expected 31 Jul (CIT filing)', 'Upon Request', 'Within 30 days of audit notice', 30, 'FY2024',
+         'OR services/other RPTs exceed 600K EUR', 'Automatic submission upon audit'],
+
+        # Spain - Standard conditional
+        ['Spain', 'Conditional', '', '', '', 'No',
+         'LF-ES-1', '1', 'OR', 'RPTs', 'Transaction (All)', 250000, 'EUR', '>',
+         'CIT Date', 'Expected 25 Jul', 'Upon Request', 'Within 10 days of request', 10, 'FY2016',
+         'LF required if local RPTs exceed 250K EUR', 'Maintain contemporaneously'],
+
+        # Malaysia - Always required
+        ['Malaysia', 'Always', '', '', '', 'No',
+         '', '', '', '', '', '', '', '',
+         'CIT Date', 'By 7 months after FYE (CIT filing)', 'Upon Request', 'Within 14 days', 14, 'FY2023',
+         'CTPD (LF) required for all entities with RPTs. MF content integrated per 2023 TPD.',
+         'File with CIT return'],
+
+        # United States - Penalty protection only
+        ['United States', 'Conditional', '', '', '', 'Yes',
+         '', '', '', '', '', '', '', '',
+         'None', 'Voluntary preparation recommended', 'None', 'N/A - voluntary', '', 'FY2018',
+         'Voluntary LF preparation for penalty protection under IRC §6662. No filing requirement.',
+         'Contemporaneous documentation provides reasonable cause defense'],
+
+        # Canada - Penalty protection only
+        ['Canada', 'Conditional', '', '', '', 'Yes',
+         '', '', '', '', '', '', '', '',
+         'None', 'Voluntary preparation recommended', 'None', 'N/A - voluntary', '', 'FY2015',
+         'Voluntary LF for penalty protection. No statutory filing requirement.',
+         'Contemporaneous documentation required for transfer pricing adjustment defense'],
+    ]
+
+    for row_idx, example in enumerate(examples, start=2):
+        for col_idx, value in enumerate(example, start=1):
+            cell = ws.cell(row=row_idx, column=col_idx)
+            cell.value = value
+            cell.fill = example_fill
+
+    # Set column widths
+    for col_idx, col in enumerate(all_columns, start=1):
+        width = 20  # default
+        if col in ['Rule Notes', 'Deadline Notes', 'Special Deadline Condition']:
+            width = 45
+        elif col in ['Metric Scope', 'Prep Date Details', 'Submission Date Details']:
+            width = 35
+        elif col in ['Metric Type', 'Submission Channel']:
+            width = 25
+        ws.column_dimensions[get_column_letter(col_idx)].width = width
+
+    ws.row_dimensions[1].height = 50
+
+    return ws
+
+
 def create_cbcr_notifications_sheet(wb):
     """Create CbCR Notifications sheet (redesigned from CbCR Requirements)"""
 
@@ -452,9 +532,9 @@ def create_v3_template():
     create_mf_sheet(wb)
     print("  ✓ MF Requirements")
 
-    # Sheet 3: LF Requirements (similar structure to MF)
-    # ... (would be similar implementation)
-    print("  ✓ LF Requirements (placeholder)")
+    # Sheet 3: LF Requirements
+    create_lf_sheet(wb)
+    print("  ✓ LF Requirements")
 
     # Sheet 4: CbCR Notifications
     create_cbcr_notifications_sheet(wb)
