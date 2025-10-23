@@ -206,8 +206,73 @@ def create_mf_sheet(wb):
 
     all_columns = create_global_sheet_structure(ws, "MF Requirements", mf_specific)
 
-    # Add data validation
-    # ... (validation setup code - similar to v2.1 but with new fields)
+    # Add data validation dropdowns
+    dv_applicability = DataValidation(type="list", formula1='"Always,Conditional,Integrated,Never Required,N/A"', allow_blank=True)
+    dv_integrated = DataValidation(type="list", formula1='"Local File,TP Form,Other"', allow_blank=True)
+    dv_penalty = DataValidation(type="list", formula1='"Yes,No"', allow_blank=True)
+    dv_group_logic = DataValidation(type="list", formula1='"AND,OR"', allow_blank=True)
+    dv_metric_type = DataValidation(type="list", formula1='"Revenue,Group Revenue,Employees,Balance Sheet,RPTs,Always,Other"', allow_blank=True)
+    dv_metric_scope = DataValidation(type="list", formula1='"Group (Consolidated),Local Entity,Transaction (Goods),Transaction (Services),Transaction (All)"', allow_blank=True)
+    dv_operator = DataValidation(type="list", formula1='">=,>,=,<,<="', allow_blank=True)
+    dv_date_rule = DataValidation(type="list", formula1='"None,CIT Date,FYE-Based,Fixed,Upon Request,With Tax Return"', allow_blank=True)
+
+    ws.add_data_validation(dv_applicability)
+    ws.add_data_validation(dv_integrated)
+    ws.add_data_validation(dv_penalty)
+    ws.add_data_validation(dv_group_logic)
+    ws.add_data_validation(dv_metric_type)
+    ws.add_data_validation(dv_metric_scope)
+    ws.add_data_validation(dv_operator)
+    ws.add_data_validation(dv_date_rule)
+
+    # Apply validations to columns (rows 3-1000)
+    dv_applicability.add(f'B3:B1000')  # Applicability
+    dv_integrated.add(f'C3:C1000')  # Integrated With
+    dv_penalty.add(f'F3:F1000')  # Penalty Protection Only
+    dv_group_logic.add(f'I3:I1000')  # Group Logic
+    dv_metric_type.add(f'J3:J1000')  # Metric Type
+    dv_metric_scope.add(f'K3:K1000')  # Metric Scope
+    dv_operator.add(f'N3:N1000')  # Operator
+    dv_date_rule.add(f'O3:O1000')  # Prep Date Rule
+    dv_date_rule.add(f'Q3:Q1000')  # Submission Date Rule
+
+    # Add helpful explanation row
+    explanation_fill = PatternFill(start_color="FFF9C4", end_color="FFF9C4", fill_type="solid")
+    explanation_font = Font(italic=True, size=9)
+
+    explanations = [
+        'Germany, Spain, Malaysia, etc.',
+        'Always / Conditional / Integrated / Never Required / N/A',
+        'Local File / TP Form / Other (only if Integrated)',
+        'e-filing portal / Form 275.MF / Attachment with CIT / Paper / BZSt Portal',
+        'Extraordinary RPTs → full TPD due within 6 months after FYE (Germany)',
+        'Yes / No (US/Canada penalty protection)',
+        'MF-DE-1, MF-ES-1, etc.',
+        '1, 2, 3... (increment for multi-conditions)',
+        'OR / AND (between groups)',
+        'Revenue / Group Revenue / Employees / RPTs / Balance Sheet / Always / Other',
+        'Group (Consolidated) / Local Entity / Transaction (Goods/Services/All)',
+        'Numeric threshold (e.g., 750000000, 6000000)',
+        'EUR / USD / GBP / JPY / MYR / etc.',
+        '>= / > / = / < / <=',
+        'None / CIT Date / FYE-Based / Fixed / Upon Request / With Tax Return',
+        'Details (e.g., CIT - 5 days, FYE + 10 months, Within 6 months of FYE)',
+        'None / CIT Date / FYE-Based / Fixed / Upon Request / With Tax Return',
+        'Details (e.g., 2026-08-25, Within 30 days of audit, By 31 Dec following FY)',
+        'Days to submit if upon request (30, 14, 10, etc.)',
+        'FY2024, 2023, etc. (when rule took effect)',
+        'Threshold rule context and special conditions',
+        'Deadline and submission context'
+    ]
+
+    for col_idx, explanation in enumerate(explanations, start=1):
+        cell = ws.cell(row=2, column=col_idx)
+        cell.value = explanation
+        cell.fill = explanation_fill
+        cell.font = explanation_font
+        cell.alignment = Alignment(wrap_text=True, vertical='top')
+
+    ws.row_dimensions[2].height = 60
 
     # Example rows
     example_fill = PatternFill(start_color="E8F5E9", end_color="E8F5E9", fill_type="solid")
@@ -247,7 +312,7 @@ def create_mf_sheet(wb):
          'Contemporaneous documentation required for transfer pricing adjustment defense'],
     ]
 
-    for row_idx, example in enumerate(examples, start=2):
+    for row_idx, example in enumerate(examples, start=3):
         for col_idx, value in enumerate(example, start=1):
             cell = ws.cell(row=row_idx, column=col_idx)
             cell.value = value
@@ -283,6 +348,74 @@ def create_lf_sheet(wb):
     ]
 
     all_columns = create_global_sheet_structure(ws, "LF Requirements", lf_specific)
+
+    # Add data validation dropdowns
+    dv_applicability = DataValidation(type="list", formula1='"Always,Conditional,Integrated,Never Required,N/A"', allow_blank=True)
+    dv_integrated = DataValidation(type="list", formula1='"Master File,TP Form,Other"', allow_blank=True)
+    dv_penalty = DataValidation(type="list", formula1='"Yes,No"', allow_blank=True)
+    dv_group_logic = DataValidation(type="list", formula1='"AND,OR"', allow_blank=True)
+    dv_metric_type = DataValidation(type="list", formula1='"Revenue,Group Revenue,Employees,Balance Sheet,RPTs,Always,Other"', allow_blank=True)
+    dv_metric_scope = DataValidation(type="list", formula1='"Group (Consolidated),Local Entity,Transaction (Goods),Transaction (Services),Transaction (All)"', allow_blank=True)
+    dv_operator = DataValidation(type="list", formula1='">=,>,=,<,<="', allow_blank=True)
+    dv_date_rule = DataValidation(type="list", formula1='"None,CIT Date,FYE-Based,Fixed,Upon Request,With Tax Return"', allow_blank=True)
+
+    ws.add_data_validation(dv_applicability)
+    ws.add_data_validation(dv_integrated)
+    ws.add_data_validation(dv_penalty)
+    ws.add_data_validation(dv_group_logic)
+    ws.add_data_validation(dv_metric_type)
+    ws.add_data_validation(dv_metric_scope)
+    ws.add_data_validation(dv_operator)
+    ws.add_data_validation(dv_date_rule)
+
+    # Apply validations to columns (rows 3-1000)
+    dv_applicability.add(f'B3:B1000')  # Applicability
+    dv_integrated.add(f'C3:C1000')  # Integrated With
+    dv_penalty.add(f'F3:F1000')  # Penalty Protection Only
+    dv_group_logic.add(f'I3:I1000')  # Group Logic
+    dv_metric_type.add(f'J3:J1000')  # Metric Type
+    dv_metric_scope.add(f'K3:K1000')  # Metric Scope
+    dv_operator.add(f'N3:N1000')  # Operator
+    dv_date_rule.add(f'O3:O1000')  # Prep Date Rule
+    dv_date_rule.add(f'Q3:Q1000')  # Submission Date Rule
+
+    # Add helpful explanation row
+    explanation_fill = PatternFill(start_color="FFF9C4", end_color="FFF9C4", fill_type="solid")
+    explanation_font = Font(italic=True, size=9)
+
+    explanations = [
+        'Germany, Spain, Malaysia, etc.',
+        'Always / Conditional / Integrated / Never Required / N/A',
+        'Master File / TP Form / Other (only if Integrated)',
+        'e-filing portal / With CIT return / Portal / Paper',
+        'Extraordinary RPTs → full TPD due within 6 months after FYE (Germany)',
+        'Yes / No (US/Canada penalty protection)',
+        'LF-DE-1, LF-ES-1, etc.',
+        '1, 2, 3... (increment for multi-conditions)',
+        'OR / AND (between groups)',
+        'Revenue / Group Revenue / Employees / RPTs / Balance Sheet / Always / Other',
+        'Group (Consolidated) / Local Entity / Transaction (Goods/Services/All)',
+        'Numeric threshold (e.g., 6000000, 250000)',
+        'EUR / USD / GBP / JPY / MYR / etc.',
+        '>= / > / = / < / <=',
+        'None / CIT Date / FYE-Based / Fixed / Upon Request / With Tax Return',
+        'Details (e.g., Expected 31 Jul, By 7 months after FYE)',
+        'None / CIT Date / FYE-Based / Fixed / Upon Request / With Tax Return',
+        'Details (e.g., Within 30 days of audit, Within 10 days of request)',
+        'Days to submit if upon request (30, 14, 10, etc.)',
+        'FY2024, 2023, etc. (when rule took effect)',
+        'Threshold rule context and special conditions',
+        'Deadline and submission context'
+    ]
+
+    for col_idx, explanation in enumerate(explanations, start=1):
+        cell = ws.cell(row=2, column=col_idx)
+        cell.value = explanation
+        cell.fill = explanation_fill
+        cell.font = explanation_font
+        cell.alignment = Alignment(wrap_text=True, vertical='top')
+
+    ws.row_dimensions[2].height = 60
 
     # Example rows
     example_fill = PatternFill(start_color="E8F5E9", end_color="E8F5E9", fill_type="solid")
@@ -327,7 +460,7 @@ def create_lf_sheet(wb):
          'Contemporaneous documentation required for transfer pricing adjustment defense'],
     ]
 
-    for row_idx, example in enumerate(examples, start=2):
+    for row_idx, example in enumerate(examples, start=3):
         for col_idx, value in enumerate(example, start=1):
             cell = ws.cell(row=row_idx, column=col_idx)
             cell.value = value
@@ -382,6 +515,32 @@ def create_cbcr_notifications_sheet(wb):
         cell.fill = header_fill
         cell.font = header_font
         cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+
+    # Add data validation dropdowns
+    dv_applicability = DataValidation(type="list", formula1='"Always,Conditional,Notification Only,Never Required,N/A"', allow_blank=True)
+    dv_frequency = DataValidation(type="list", formula1='"Annual,One-Time,Upon Change"', allow_blank=True)
+    dv_filer = DataValidation(type="list", formula1='"UPE,Local CE,One CE for All,Other"', allow_blank=True)
+    dv_joint = DataValidation(type="list", formula1='"Yes,No,Not Specified"', allow_blank=True)
+    dv_in_cit = DataValidation(type="list", formula1='"Yes,No"', allow_blank=True)
+    dv_date_rule = DataValidation(type="list", formula1='"None,CIT Date,FYE-Based,Fixed,Upon Request,With Tax Return"', allow_blank=True)
+    dv_linked = DataValidation(type="list", formula1='"MF,LF,CbCR,Standalone"', allow_blank=True)
+
+    ws.add_data_validation(dv_applicability)
+    ws.add_data_validation(dv_frequency)
+    ws.add_data_validation(dv_filer)
+    ws.add_data_validation(dv_joint)
+    ws.add_data_validation(dv_in_cit)
+    ws.add_data_validation(dv_date_rule)
+    ws.add_data_validation(dv_linked)
+
+    # Apply validations to columns (rows 2-1000)
+    dv_applicability.add(f'B2:B1000')  # Applicability
+    dv_frequency.add(f'C2:C1000')  # Notification Frequency
+    dv_filer.add(f'D2:D1000')  # Filer Type
+    dv_joint.add(f'E2:E1000')  # Joint Filing Allowed
+    dv_in_cit.add(f'F2:F1000')  # Included in CIT Return
+    dv_date_rule.add(f'I2:I1000')  # Submission Date Rule
+    dv_linked.add(f'L2:L1000')  # Linked To
 
     # Examples
     examples = [
@@ -466,6 +625,29 @@ def create_tp_forms_sheet(wb):
         cell.fill = header_fill
         cell.font = header_font
         cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+
+    # Add data validation dropdowns
+    dv_form_type = DataValidation(type="list", formula1='"TP Disclosure,TP Return,MF Summary,LF Summary,CbCR Notification,Other"', allow_blank=True)
+    dv_trigger = DataValidation(type="list", formula1='"Always,If MF Required,If LF Required,If MF or LF Required,If CbCR Required,Other"', allow_blank=True)
+    dv_linked = DataValidation(type="list", formula1='"MF,LF,CbCR,Standalone"', allow_blank=True)
+    dv_date_rule = DataValidation(type="list", formula1='"None,CIT Date,FYE-Based,Fixed,Upon Request,With Tax Return"', allow_blank=True)
+    dv_esig = DataValidation(type="list", formula1='"Yes,No"', allow_blank=True)
+    dv_timestamp = DataValidation(type="list", formula1='"Yes,No,Electronic Timestamp"', allow_blank=True)
+
+    ws.add_data_validation(dv_form_type)
+    ws.add_data_validation(dv_trigger)
+    ws.add_data_validation(dv_linked)
+    ws.add_data_validation(dv_date_rule)
+    ws.add_data_validation(dv_esig)
+    ws.add_data_validation(dv_timestamp)
+
+    # Apply validations to columns (rows 2-1000)
+    dv_form_type.add(f'C2:C1000')  # Form Type
+    dv_trigger.add(f'D2:D1000')  # Form Trigger
+    dv_linked.add(f'E2:E1000')  # Linked To
+    dv_date_rule.add(f'G2:G1000')  # Submission Date Rule
+    dv_esig.add(f'J2:J1000')  # Electronic Signature Required
+    dv_timestamp.add(f'K2:K1000')  # Timestamp Required
 
     # Examples
     examples = [
